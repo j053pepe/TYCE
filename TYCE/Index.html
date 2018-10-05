@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="es-mx">
+<head>
+    <meta charset="utf-8" />
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/signin.css" rel="stylesheet" />
+</head>
+<body class="text-center">
+    <form class="form-signin">
+        <img class="mb-4" src="Imagenes/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+        <label for="txtUserId" class="sr-only">Email address</label>
+        <input type="number" id="txtUserId" class="form-control" placeholder="User Id" required autofocus>
+        <label for="txtPass" class="sr-only">Password</label>
+        <input type="password" id="txtPass" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+    </form>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script src="Scripts/umd/popper.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script>
+        $.getScript("JS/Login/Login.js");
+    </script>
+</body>
+</html>
