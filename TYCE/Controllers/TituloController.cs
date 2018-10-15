@@ -23,5 +23,33 @@ namespace TYCE.Controllers
                 return BadRequest("Fallo al momento de generar el XML");
             }
         }
+
+        [Route("Enviar")]
+        [HttpPost]
+        public IHttpActionResult Enviar()
+        {
+            try
+            {
+                return Ok(BLL.SEP.BLLTitulo.EnviarSEP());
+            }
+            catch
+            {
+                return BadRequest("Fallo al momento de enviar el XML");
+            }
+        }
+
+        [Route("Consultar")]
+        [HttpPost]
+        public IHttpActionResult Query()
+        {
+            try
+            {
+                return Ok(BLL.SEP.BLLTitulo.ConsultarSEP());
+            }
+            catch
+            {
+                return BadRequest("Fallo al momento de conultar el resultado");
+            }
+        }
     }
 }

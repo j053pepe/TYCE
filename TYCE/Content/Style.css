@@ -1,4 +1,4 @@
-﻿/*
+/*
     DEMO STYLE
 */
 
@@ -64,8 +64,8 @@ span {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #7386D5;
-    color: #fff;
+    background: #ffffff;
+    color: #485a6a;
     transition: all 0.3s;
 }
 
@@ -116,7 +116,7 @@ span {
 
     #sidebar .sidebar-header {
         padding: 20px;
-        background: #6d7fcc;
+        background: #ffffff;
     }
 
         #sidebar .sidebar-header strong {
@@ -136,7 +136,7 @@ span {
     }
 
         #sidebar ul li a:hover {
-            color: #7386D5;
+            color: #485a6a;
             background: #fff;
         }
 
@@ -146,8 +146,8 @@ span {
 
     #sidebar ul li.active > a,
     a[aria-expanded="true"] {
-        color: #fff;
-        background: #6d7fcc;
+        color: #485a6a;
+        background: #ffffff;
     }
 
 a[data-toggle="collapse"] {
@@ -165,7 +165,7 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #efeff1;
 }
 
 ul.CTAs {
@@ -181,13 +181,13 @@ ul.CTAs {
     }
 
 a.download {
-    background: #fff;
-    color: #7386D5;
+    background: #000;
+    color: #ffffff;
 }
 
 a.article,
 a.article:hover {
-    background: #6d7fcc !important;
+    background: #000000 !important;
     color: #fff !important;
 }
 

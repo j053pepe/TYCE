@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
+using System.Dynamic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -46,7 +49,6 @@ namespace BLL.Tools
 
                 var Antecedente = new TituloElectronicoAntecedente
                 {
-                    fechaInicio = alumno.AlumnoAntecedente1.FechaInicio <= FechaPasada ? "" : alumno.AlumnoAntecedente1.FechaInicio.ToString("yyyy-MM-dd"),
                     fechaTerminacion = alumno.AlumnoAntecedente1.FechaFin.ToString("yyyy-MM-dd"),
                     idEntidadFederativa = alumno.AlumnoAntecedente1.EntidadFederativa.Clave,
                     entidadFederativa = alumno.AlumnoAntecedente1.EntidadFederativa.Descripcion,
@@ -55,29 +57,46 @@ namespace BLL.Tools
                     institucionProcedencia = alumno.AlumnoAntecedente1.Nombre,
                     noCedula = ""
                 };
+                if (alumno.AlumnoAntecedente1.FechaInicio > FechaPasada)
+                {
+                    Antecedente.fechaInicio = alumno.AlumnoAntecedente1.FechaInicio.ToString("yyyy-MM-dd");
+                }
+
                 var Carrera = new TituloElectronicoCarrera
                 {
                     cveCarrera = alumno.AlumnoOfertaEducativa.OfertaEducativa.InstitucionOfertaEducativa.FirstOrDefault().ClaveOfertaEducativa,
                     nombreCarrera = alumno.AlumnoOfertaEducativa.OfertaEducativa.DescripcionSEP,
-                    fechaInicio = alumno.AlumnoOfertaEducativa.FechaInicio <= FechaPasada ? "" : alumno.AlumnoOfertaEducativa.FechaInicio.ToString("yyyy-MM-dd"),
                     fechaTerminacion = alumno.AlumnoOfertaEducativa.FechaTermino.ToString("yyyy-MM-dd"),
                     idAutorizacionReconocimiento = alumno.AutorizacionReconocimientoId.ToString(),
                     autorizacionReconocimiento = alumno.AutorizacionReconocimiento.Descripcion,
                     numeroRvoe = ""// alumno.AlumnoOfertaEducativa.RVOE
                 };
+
+                if (alumno.AlumnoOfertaEducativa.FechaInicio > FechaPasada)
+                {
+                    Carrera.fechaInicio = alumno.AlumnoOfertaEducativa.FechaInicio.ToString("yyyy-MM-dd");
+                }
+
                 var Expedicion = new TituloElectronicoExpedicion
                 {
                     fechaExpedicion = DateTime.Now.ToString("yyyy-MM-dd"),
                     idModalidadTitulacion = alumno.ModalidadTitulacionId.ToString(),
                     modalidadTitulacion = alumno.ModalidadTitulacion.ModalidadTitulacion1,
-                    fechaExamenProfesional = alumno.FechaExamenProfesional <= FechaPasada ? "" : alumno.FechaExamenProfesional.ToString("yyyy-MM-dd"),
-                    fechaExencionExamenProfesional = alumno.FechaExencionExamenProfecional <= FechaPasada ? "" : alumno.FechaExencionExamenProfecional.ToString("yyyy-MM-dd"),
                     cumplioServicioSocial = "1",
                     idFundamentoLegalServicioSocial = alumno.FundamentoLegalId.ToString(),
                     fundamentoLegalServicioSocial = alumno.FundamentoLegal.Descripcion,
                     idEntidadFederativa = alumno.EntidadFederativa.Clave,
                     entidadFederativa = alumno.EntidadFederativa.Descripcion
                 };
+                if (alumno.FechaExamenProfesional > FechaPasada)
+                {
+                    Expedicion.fechaExamenProfesional = alumno.FechaExamenProfesional.ToString("yyyy-MM-dd");
+                }
+                if (alumno.FechaExencionExamenProfecional > FechaPasada)
+                {
+                    Expedicion.fechaExencionExamenProfesional = alumno.FechaExencionExamenProfecional.ToString("yyyy-MM-dd");
+                }
+
                 var Institucion = new TituloElectronicoInstitucion
                 {
                     cveInstitucion = alumno.AlumnoOfertaEducativa.OfertaEducativa.InstitucionOfertaEducativa.First().Campus.Clave,
@@ -269,11 +288,12 @@ namespace BLL.Tools
 
             string Ruta = HttpContext.Current.Server.MapPath("~");
             Ruta += "//Documentos//SEP//Titulo//";
+            DateTime FHoy = DateTime.Now;
+            string NameZIP = FHoy.Day + "_" + FHoy.Month + "_" + FHoy.Year + "_" + FHoy.Hour + "_" + FHoy.Minute + ".Zip";
 
             if (rutaFiles.Count > 1)
             {
-                DateTime FHoy = DateTime.Now;
-                string NameZIP = FHoy.Day + "_" + FHoy.Month + "_" + FHoy.Year + "_" + FHoy.Hour + "_" + FHoy.Minute + ".Zip";
+                ComprimirFiles(rutaFiles, Ruta, NameZIP);
 
                 objSEP.archivoBase64 = ReadFile(Ruta + NameZIP);
                 objSEP.nombreArchivo = NameZIP;
@@ -284,10 +304,12 @@ namespace BLL.Tools
                 objSEP.nombreArchivo = rutaFiles[0];
             }
 
+            File.Delete(Ruta + NameZIP);
+
             objSEP.autenticacion = new Titulos_SEP.autenticacionType
             {
-                usuario = "usuariomet.qa114",
-                password = "jVJmXxGC"
+                usuario = "usuariomet.qa118",
+                password = "KUe1SpjB"
             };
             try
             {
@@ -320,7 +342,7 @@ namespace BLL.Tools
             }
         }
 
-        private void ComprimirFiles(List<string> Files, string ruta, string Nombre)
+        private static void ComprimirFiles(List<string> Files, string ruta, string Nombre)
         {
             using (FileStream zipToOpen = new FileStream(ruta + Nombre, FileMode.OpenOrCreate))
             {
@@ -340,47 +362,159 @@ namespace BLL.Tools
             Titulos_SEP.descargaTituloElectronicoRequest objSEPDow = new Titulos_SEP.descargaTituloElectronicoRequest();
             Titulos_SEP.TitulosPortTypeClient ClientSEP = new Titulos_SEP.TitulosPortTypeClient("TitulosPortTypeSoap11");
             List<dynamic> lstResult = new List<dynamic>();
+            List<string> lstFolios = new List<string>();
 
             ClientSEP.Open();
             objSEP.autenticacion = new Titulos_SEP.autenticacionType
             {
-                usuario = "usuariomet.qa114",
-                password = "jVJmXxGC"
+                usuario = "usuariomet.qa118",
+                password = "KUe1SpjB"
             };
             objSEPDow.autenticacion = objSEP.autenticacion;
 
             lstLotes.ForEach(objlote =>
             {
+                dynamic item = new ExpandoObject();
+
                 objSEP.numeroLote = objlote.NumeroLote;
+                item.NumeroLote = objlote.NumeroLote;
 
                 var resul =
                 ClientSEP.consultaProcesoTituloElectronico(objSEP);
 
-                lstResult.Add(new
-                {
-                    objlote.Alumnos,
-                    objlote.NumeroLote,
-                    resul.mensaje,
-                    resul.estatusLote
-                });
+                item.Mensaje = resul.mensaje;
+                item.MovimientoId = resul.estatusLote == 1 ? 4 : 7;
+                item.Alumnos = new List<dynamic>();
+
+                lstFolios.Add(resul.numeroLote);
+
+                lstResult.Add(item);
             });
             string Ruta = HttpContext.Current.Server.MapPath("~");
             Ruta += "//Documentos//SEP//Titulo//";
 
-            lstResult.ForEach(obj =>
+            lstFolios.ForEach(obj =>
             {
-                objSEPDow.numeroLote = obj.NumeroLote;
+                objSEPDow.numeroLote = obj;
 
                 var fileN = ClientSEP.descargaTituloElectronico(objSEPDow);
 
-                File.WriteAllBytes(Ruta + fileN.numeroLote + ".zip", fileN.titulosBase64);
+                if (!fileN.mensaje.ToUpper().Contains("ESPERA"))
+                {
 
+                    File.WriteAllBytes(Ruta + fileN.numeroLote + ".zip", fileN.titulosBase64);
 
+                    ZipFile.ExtractToDirectory(Ruta + fileN.numeroLote + ".zip", Ruta + fileN.numeroLote);
+                    File.Delete(Ruta + fileN.numeroLote + ".zip");
+
+                    string nombreExc = "ResultadoCargaTitulos" + fileN.numeroLote + ".xls";
+                    List<dynamic> lstResultAlumnos = new List<dynamic>();
+
+                    GetRows(Ruta + fileN.numeroLote + "//" + nombreExc, ".xls")?.ForEach(b =>
+                    {
+                        string Foliob = b.FolioControl;
+
+                        var alumno = lstLotes.Where(a => a.NumeroLote == obj).FirstOrDefault();
+                        var lstalumnos = (IEnumerable<dynamic>)alumno.Alumnos;
+
+                        dynamic objAlumno = null;
+
+                        lstalumnos.ToList().ForEach(a =>
+                        {
+                            if ((a.AlumnoTituloId + "A" + a.AlumnoId + "C" + a.OfertaEducativaId).Contains(Foliob))
+                            {
+                                objAlumno = a;
+                            }
+                        });
+
+                        if (objAlumno != null)
+                        {
+                            lstResultAlumnos.Add(new
+                            {
+                                objAlumno.AlumnoTituloId,
+                                objAlumno.AlumnoId,
+                                objAlumno.OfertaEducativaId,
+                                MovimeintoId = b.Estatus == "1" ? 4 : 7,
+                                b.Descripcion
+                            });
+                        }
+                    });
+
+                    var itemlista = lstResult.Where(a => a.NumeroLote == obj).FirstOrDefault();
+                    itemlista.Alumnos = lstResultAlumnos;
+
+                    //Directory.Delete(Ruta + fileN.numeroLote, true);
+                }
+                else
+                {
+
+                    var itemlista = lstResult.Where(a => a.NumeroLote == obj).FirstOrDefault();
+                    
+                }
             });
 
             ClientSEP.Close();
 
             return lstResult;
+        }
+
+
+        internal static List<dynamic> GetRows(string fileName, string fileExt)
+        {
+            string conn = string.Empty;
+            DataSet dtexcel = new DataSet();
+            DataSet dtfolio = new DataSet();
+            List<dynamic> Result = new List<dynamic>();
+            try
+            {
+                if (fileExt.CompareTo(".xls") == 0)
+                    conn = @"provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fileName + ";Extended Properties='Excel 8.0;HRD=Yes;IMEX=1';"; //for below excel 2007  
+                else
+                    conn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + fileName + ";Extended Properties='Excel 12.0;HDR=NO';"; //for above excel 2007  
+                using (OleDbConnection con = new OleDbConnection(conn))
+                {
+                    try
+                    {
+                        OleDbDataAdapter oleAdpt = new OleDbDataAdapter();
+                        string sql = "SELECT [ARCHIVO],[ESTATUS],[DESCRIPCION] FROM [Resultado$]";
+                        OleDbCommand selectCMD = new OleDbCommand(sql, con);
+                        oleAdpt.SelectCommand = selectCMD;
+
+                        oleAdpt.Fill(dtexcel); //fill excel data into dataTable  
+
+                        int numerot = dtexcel.Tables[0].Rows.Count + 1;
+                        sql = "SELECT * FROM [Resultado$D1:D" + numerot + "]";
+                        selectCMD = new OleDbCommand(sql, con);
+                        oleAdpt.SelectCommand = selectCMD;
+
+                        oleAdpt.Fill(dtfolio);
+                    }
+                    catch { }
+                }
+                dtexcel.Tables[0].Columns.Add(dtfolio.Tables[0].Columns[0].ColumnName);
+
+                for (int i = 0; i < dtfolio.Tables[0].Rows.Count; i++)
+                {
+                    dtexcel.Tables[0].Rows[i][3] = dtfolio.Tables[0].Rows[i][0];
+                }
+
+                Result.AddRange(
+                dtexcel.Tables[0].AsEnumerable().Select(b => new
+                {
+                    Archivo = Convert.ToString(b["ARCHIVO"] != DBNull.Value ? b["ARCHIVO"] : ""),
+                    Estatus = Convert.ToString(b["ESTATUS"] != DBNull.Value ? b["ESTATUS"] : ""),
+                    Descripcion = Convert.ToString(b["DESCRIPCION"] != DBNull.Value ? b["DESCRIPCION"] : ""),
+                    FolioControl = Convert.ToString(b["FOLIO CONTROL"] != DBNull.Value ? b["FOLIO CONTROL"] : "")
+                })
+                .ToList());
+
+                return Result;
+            }
+            catch
+            {
+                return null;
+            }
+
         }
 
         internal static byte[] ReadFile(string strArchivo)
