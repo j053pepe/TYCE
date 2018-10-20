@@ -69,7 +69,7 @@ namespace BLL.Tools
                     fechaTerminacion = alumno.AlumnoOfertaEducativa.FechaTermino.ToString("yyyy-MM-dd"),
                     idAutorizacionReconocimiento = alumno.AutorizacionReconocimientoId.ToString(),
                     autorizacionReconocimiento = alumno.AutorizacionReconocimiento.Descripcion,
-                    numeroRvoe = ""// alumno.AlumnoOfertaEducativa.RVOE
+                    numeroRvoe = alumno.AlumnoOfertaEducativa.RVOE
                 };
 
                 if (alumno.AlumnoOfertaEducativa.FechaInicio > FechaPasada)

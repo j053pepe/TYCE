@@ -27,35 +27,35 @@ namespace BLL.SEP
             List<ResultSEP> results = new List<ResultSEP>();
             List<string> Folios = new List<string>();
 
-            //Alumnos.Where(a => a.AlumnoTitulo.AlumnoTituloId == 1).ToList().ForEach(a =>
-            //   {
-            //       var result = Tools.SEP.SendArchivos(new List<string> { a.AlumnoTitulo.AlumnoTituloId + "A" + a.AlumnoTitulo.AlumnoId + "C" + a.AlumnoTitulo.AlumnoOfertaEducativaId + ".xml" });
-            //       if ((bool)result.GetType().GetProperty("Status").GetValue(result, null))
-            //       {
-            //           var resuljson = JObject.FromObject(result);
-            //           results.Add(new ResultSEP
-            //           {
-            //               NumeroLote = resuljson["numeroLote"]?.ToString() ?? "",
-            //               Mensaje = resuljson["mensaje"].ToString(),
-            //               Folios = new List<string> { a.AlumnoTitulo.AlumnoTituloId + "A" + a.AlumnoTitulo.AlumnoId + "C" + a.AlumnoTitulo.AlumnoOfertaEducativaId + ".xml" }
-            //           });
-            //       }
-            //   });
+            Alumnos.Where(a => a.AlumnoTitulo.AlumnoTituloId == 1).ToList().ForEach(a =>
+               {
+                   var result = Tools.SEP.SendArchivos(new List<string> { a.AlumnoTitulo.AlumnoTituloId + "A" + a.AlumnoTitulo.AlumnoId + "C" + a.AlumnoTitulo.AlumnoOfertaEducativaId + ".xml" });
+                   if ((bool)result.GetType().GetProperty("Status").GetValue(result, null))
+                   {
+                       var resuljson = JObject.FromObject(result);
+                       results.Add(new ResultSEP
+                       {
+                           NumeroLote = resuljson["numeroLote"]?.ToString() ?? "",
+                           Mensaje = resuljson["mensaje"].ToString(),
+                           Folios = new List<string> { a.AlumnoTitulo.AlumnoTituloId + "A" + a.AlumnoTitulo.AlumnoId + "C" + a.AlumnoTitulo.AlumnoOfertaEducativaId + ".xml" }
+                       });
+                   }
+               });
 
-            //Alumnos.Where(a => a.AlumnoTitulo.AlumnoTituloId == 2).ToList().ForEach(a =>
-            //{
-            //    var result = Tools.SEP.SendArchivos(new List<string> { a.AlumnoTitulo.AlumnoTituloId + "A" + a.AlumnoTitulo.AlumnoId + "C" + a.AlumnoTitulo.AlumnoOfertaEducativaId + ".xml" });
-            //    if ((bool)result.GetType().GetProperty("Status").GetValue(result, null))
-            //    {
-            //        var resuljson = JObject.FromObject(result);
-            //        results.Add(new ResultSEP
-            //        {
-            //            NumeroLote = resuljson["numeroLote"]?.ToString() ?? "",
-            //            Mensaje = resuljson["mensaje"].ToString(),
-            //            Folios = new List<string> { a.AlumnoTitulo.AlumnoTituloId + "A" + a.AlumnoTitulo.AlumnoId + "C" + a.AlumnoTitulo.AlumnoOfertaEducativaId + ".xml" }
-            //        });
-            //    }
-            //});
+            Alumnos.Where(a => a.AlumnoTitulo.AlumnoTituloId == 2).ToList().ForEach(a =>
+            {
+                var result = Tools.SEP.SendArchivos(new List<string> { a.AlumnoTitulo.AlumnoTituloId + "A" + a.AlumnoTitulo.AlumnoId + "C" + a.AlumnoTitulo.AlumnoOfertaEducativaId + ".xml" });
+                if ((bool)result.GetType().GetProperty("Status").GetValue(result, null))
+                {
+                    var resuljson = JObject.FromObject(result);
+                    results.Add(new ResultSEP
+                    {
+                        NumeroLote = resuljson["numeroLote"]?.ToString() ?? "",
+                        Mensaje = resuljson["mensaje"].ToString(),
+                        Folios = new List<string> { a.AlumnoTitulo.AlumnoTituloId + "A" + a.AlumnoTitulo.AlumnoId + "C" + a.AlumnoTitulo.AlumnoOfertaEducativaId + ".xml" }
+                    });
+                }
+            });
 
             Alumnos.Where(a => a.AlumnoTitulo.AlumnoTituloId == 3).ToList().ForEach(a =>
             {
@@ -72,29 +72,29 @@ namespace BLL.SEP
                 }
             });
 
-            //Alumnos.Where(a => a.AlumnoTitulo.AlumnoTituloId > 3).ToList().ForEach(a =>
-            //{
-            //    Folios.Add(a.AlumnoTitulo.AlumnoTituloId + "A" + a.AlumnoTitulo.AlumnoId + "C" + a.AlumnoTitulo.AlumnoOfertaEducativaId + ".xml");
-            //});
+            Alumnos.Where(a => a.AlumnoTitulo.AlumnoTituloId > 3).ToList().ForEach(a =>
+            {
+                Folios.Add(a.AlumnoTitulo.AlumnoTituloId + "A" + a.AlumnoTitulo.AlumnoId + "C" + a.AlumnoTitulo.AlumnoOfertaEducativaId + ".xml");
+            });
 
-            //var resultM = Tools.SEP.SendArchivos(Folios);
-            //if ((bool)resultM.GetType().GetProperty("Status").GetValue(resultM, null))
-            //{
-            //    var resuljson = JObject.FromObject(resultM);
-            //    results.Add(new ResultSEP
-            //    {
-            //        NumeroLote = resuljson["numeroLote"]?.ToString() ?? "",
-            //        Mensaje = resuljson["mensaje"].ToString(),
-            //        Folios = Folios
-            //    });
-            //}
+            var resultM = Tools.SEP.SendArchivos(Folios);
+            if ((bool)resultM.GetType().GetProperty("Status").GetValue(resultM, null))
+            {
+                var resuljson = JObject.FromObject(resultM);
+                results.Add(new ResultSEP
+                {
+                    NumeroLote = resuljson["numeroLote"]?.ToString() ?? "",
+                    Mensaje = resuljson["mensaje"].ToString(),
+                    Folios = Folios
+                });
+            }
 
             return results;
         }
 
         public static object ConsultarSEP()
         {
-            var lstAlumnos = BLLAlumnos.ListaFoliosSEP().Where(a => a.NumeroLote == "40145" || a.NumeroLote == "40201").ToList();
+            var lstAlumnos = BLLAlumnos.ListaFoliosSEP();
             List<dynamic> lstLoteAlumno = new List<dynamic>();
 
             lstAlumnos.ForEach(alumno =>

@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLLInstitucion.cs" />
     <Compile Include="SEP\BLLAlumnos.cs" />
     <Compile Include="SEP\BLLTitulo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

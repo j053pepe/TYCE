@@ -56,8 +56,8 @@ namespace BLL.SEP
                 InstitucionId = "0",
                 OfertaEducativaId = 1,
                 FechaTermino = new DateTime(2018, 8, 30),
-                FechaInicio = new DateTime(1900, 1, 1),
-                RVOE = "303304",
+                FechaInicio = new DateTime(2015, 8, 30),
+                RVOE = "20130249",
                 OfertaEducativa = new OfertaEducativa
                 {
                     DescripcionSEP = "LICENCIATURA EN PEDAGOGÍA",
@@ -184,6 +184,7 @@ namespace BLL.SEP
                     Descripcion = "JALISCO",
                     EntidadFederativaId = 14
                 },
+                FechaInicio= new DateTime(2013, 2, 8),
                 FechaFin = new DateTime(2016, 2, 8)
             };
 
@@ -237,8 +238,8 @@ namespace BLL.SEP
                 InstitucionId = "0",
                 OfertaEducativaId = 1,
                 FechaTermino = new DateTime(2018, 8, 30),
-                FechaInicio = new DateTime(1900, 1, 1),
-                RVOE = "303304",
+                FechaInicio = new DateTime(2015, 8, 30),
+                RVOE = "20130249",
                 OfertaEducativa = new OfertaEducativa
                 {
                     DescripcionSEP = "LICENCIATURA EN PEDAGOGÍA",
@@ -347,6 +348,7 @@ namespace BLL.SEP
                     Descripcion = "JALISCO",
                     EntidadFederativaId = 14
                 },
+                FechaInicio=new DateTime(2007, 7, 20),
                 FechaFin = new DateTime(2010, 7, 20)
             };
 
@@ -373,8 +375,8 @@ namespace BLL.SEP
                 InstitucionId = "0",
                 OfertaEducativaId = 1,
                 FechaTermino = new DateTime(2018, 8, 30),
-                FechaInicio = new DateTime(1900, 1, 1),
-                RVOE = "303304",
+                FechaInicio = new DateTime(2015, 8, 30),
+                RVOE = "20130249",
                 OfertaEducativa = new OfertaEducativa
                 {
                     DescripcionSEP = "LICENCIATURA EN PEDAGOGÍA",
@@ -482,6 +484,7 @@ namespace BLL.SEP
                     Descripcion = "JALISCO",
                     EntidadFederativaId = 14
                 },
+                FechaInicio= new DateTime(2007,7,20),
                 FechaFin = new DateTime(2010, 7, 20)
             };
 
@@ -508,8 +511,8 @@ namespace BLL.SEP
                 InstitucionId = "0",
                 OfertaEducativaId = 1,
                 FechaTermino = new DateTime(2018, 8, 30),
-                FechaInicio = new DateTime(1900, 1, 1),
-                RVOE = "303304",
+                FechaInicio = new DateTime(2015, 8, 30),
+                RVOE = "20130249",
                 OfertaEducativa = new OfertaEducativa
                 {
                     DescripcionSEP = "LICENCIATURA EN PEDAGOGÍA",
@@ -617,6 +620,7 @@ namespace BLL.SEP
                     Descripcion = "AGUASCALIENTES",
                     EntidadFederativaId = 1
                 },
+                FechaInicio= new DateTime(2012,3,15), 
                 FechaFin = new DateTime(2015, 3, 15)
             };
 
@@ -643,8 +647,8 @@ namespace BLL.SEP
                 InstitucionId = "0",
                 OfertaEducativaId = 1,
                 FechaTermino = new DateTime(2018, 8, 30),
-                FechaInicio = new DateTime(1900, 1, 1),
-                RVOE = "303304",
+                FechaInicio = new DateTime(2015, 8, 30),
+                RVOE = "20130249",
                 OfertaEducativa = new OfertaEducativa
                 {
                     DescripcionSEP = "LICENCIATURA EN PEDAGOGÍA",
@@ -752,6 +756,7 @@ namespace BLL.SEP
                     Descripcion = "JALISCO",
                     EntidadFederativaId = 14
                 },
+                FechaInicio= new DateTime(2005,6,27),
                 FechaFin = new DateTime(2008, 6, 27)
             };
 
@@ -776,8 +781,8 @@ namespace BLL.SEP
                 InstitucionId = "0",
                 OfertaEducativaId = 1,
                 FechaTermino = new DateTime(2018, 8, 30),
-                FechaInicio = new DateTime(1900, 1, 1),
-                RVOE = "303304",
+                FechaInicio = new DateTime(2015, 8, 30),
+                RVOE = "20130249",
                 OfertaEducativa = new OfertaEducativa
                 {
                     DescripcionSEP = "LICENCIATURA EN PEDAGOGÍA",
@@ -885,6 +890,7 @@ namespace BLL.SEP
                     Descripcion = "JALISCO",
                     EntidadFederativaId = 14
                 },
+                FechaInicio= new DateTime(2005, 7, 21),
                 FechaFin = new DateTime(2008, 7, 21)
             };
 
@@ -910,8 +916,8 @@ namespace BLL.SEP
                 InstitucionId = "0",
                 OfertaEducativaId = 1,
                 FechaTermino = new DateTime(2018, 8, 30),
-                FechaInicio = new DateTime(1900, 1, 1),
-                RVOE = "303304",
+                FechaInicio = new DateTime(2015, 8, 30),
+                RVOE = "20130249",
                 OfertaEducativa = new OfertaEducativa
                 {
                     DescripcionSEP = "LICENCIATURA EN PEDAGOGÍA",
@@ -1019,6 +1025,7 @@ namespace BLL.SEP
                     Descripcion = "JALISCO",
                     EntidadFederativaId = 14
                 },
+                FechaInicio= new DateTime(2013, 3, 3),
                 FechaFin = new DateTime(2016, 3, 3)
             };
 
@@ -1044,8 +1051,8 @@ namespace BLL.SEP
                 InstitucionId = "0",
                 OfertaEducativaId = 1,
                 FechaTermino = new DateTime(2018, 8, 30),
-                FechaInicio = new DateTime(1900, 1, 1),
-                RVOE = "303304",
+                FechaInicio = new DateTime(2015, 8, 30),
+                RVOE = "20130249",
                 OfertaEducativa = new OfertaEducativa
                 {
                     DescripcionSEP = "LICENCIATURA EN PEDAGOGÍA",
@@ -1153,6 +1160,7 @@ namespace BLL.SEP
                     Descripcion = "JALISCO",
                     EntidadFederativaId = 14
                 },
+                FechaInicio= new DateTime(2005, 7, 21),
                 FechaFin = new DateTime(2008, 7, 21)
             };
 
@@ -1177,8 +1185,8 @@ namespace BLL.SEP
                 InstitucionId = "0",
                 OfertaEducativaId = 1,
                 FechaTermino = new DateTime(2018, 8, 30),
-                FechaInicio = new DateTime(1900, 1, 1),
-                RVOE = "303304",
+                FechaInicio = new DateTime(2015, 8, 30),
+                RVOE = "20130249",
                 OfertaEducativa = new OfertaEducativa
                 {
                     DescripcionSEP = "LICENCIATURA EN PEDAGOGÍA",
@@ -1287,6 +1295,7 @@ namespace BLL.SEP
                     Descripcion = "JALISCO",
                     EntidadFederativaId = 14
                 },
+                FechaInicio= new DateTime(2006, 7, 14),
                 FechaFin = new DateTime(2009, 7, 14)
             };
 
@@ -1306,7 +1315,7 @@ namespace BLL.SEP
             {
                 new ResultSEP
                 {
-                    NumeroLote= "40143",
+                    NumeroLote= "41144",
                     Mensaje= "",
                     Folios=new List<string> {"1A201102001C1.xml" },
                     Alumnos =new List<AlumnoSEP> {
@@ -1319,7 +1328,7 @@ namespace BLL.SEP
                 },
                 new ResultSEP
                 {
-                    NumeroLote= "40144",
+                    NumeroLote= "41145",
                     Mensaje= "",
                     Folios= new List<string>{ "2A201202002C1.xml" },
                     Alumnos =new List<AlumnoSEP> {
@@ -1332,7 +1341,7 @@ namespace BLL.SEP
                 },
                 new ResultSEP
                 {
-                    NumeroLote= "40145",
+                    NumeroLote= "41146",
                     Mensaje= "",
                     Folios=new List<string> { "3A201202004C1.xml" },
                     Alumnos =new List<AlumnoSEP> {
@@ -1345,20 +1354,7 @@ namespace BLL.SEP
                 },
                 new ResultSEP
                 {
-                    NumeroLote= "40201",
-                    Mensaje= "",
-                    Folios=new List<string> { "3A201202004C1.xml" },
-                    Alumnos =new List<AlumnoSEP> {
-                        new AlumnoSEP{
-                            AlumnoId= "201202004",
-                            AlumnoTituloId=3,
-                            OfertaEducativaId=1
-                        }
-                }
-                },
-                new ResultSEP
-                {
-                    NumeroLote= "40112",
+                    NumeroLote= "41147",
                     Mensaje= "",
                     Folios=new List<string> {
                         "4A201002004C1.xml",
