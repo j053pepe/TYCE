@@ -123,6 +123,7 @@
     <Content Include="Imagenes\logo_oficial.png" />
     <Content Include="Imagenes\sidebar-toggle-light.png" />
     <Content Include="JS\Home\Global.js" />
+    <Content Include="JS\SEP\Titulo\Solicitud.js" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

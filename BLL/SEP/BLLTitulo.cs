@@ -14,8 +14,11 @@ namespace BLL.SEP
 
             Alumnos.ForEach(a =>
             {
-                BLL.Tools.SEP.CrearXMLTitulo(a.AlumnoTitulo, a.Usuario);
-                Cadenas.Add(Tools.SEP.CadenaSEP);
+                if (a.AlumnoTitulo.AlumnoTituloId == 1)
+                {
+                    BLL.Tools.SEP.CrearXMLTitulo(a.AlumnoTitulo, a.Usuario);
+                    Cadenas.Add(Tools.SEP.CadenaSEP);
+                }
             });
 
             return Cadenas;
@@ -41,7 +44,7 @@ namespace BLL.SEP
                        });
                    }
                });
-
+            /*
             Alumnos.Where(a => a.AlumnoTitulo.AlumnoTituloId == 2).ToList().ForEach(a =>
             {
                 var result = Tools.SEP.SendArchivos(new List<string> { a.AlumnoTitulo.AlumnoTituloId + "A" + a.AlumnoTitulo.AlumnoId + "C" + a.AlumnoTitulo.AlumnoOfertaEducativaId + ".xml" });
@@ -88,6 +91,7 @@ namespace BLL.SEP
                     Folios = Folios
                 });
             }
+            */
 
             return results;
         }
@@ -99,11 +103,14 @@ namespace BLL.SEP
 
             lstAlumnos.ForEach(alumno =>
             {
-                lstLoteAlumno.Add(new
+                if (alumno.NumeroLote == "43415")
                 {
-                    alumno.NumeroLote,
-                    alumno.Alumnos
-                });
+                    lstLoteAlumno.Add(new
+                    {
+                        alumno.NumeroLote,
+                        alumno.Alumnos
+                    });
+                }
             });
 
             List<dynamic> lstResult = Tools.SEP.RevisarLotes(lstLoteAlumno);

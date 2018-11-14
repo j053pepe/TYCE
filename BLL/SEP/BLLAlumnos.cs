@@ -29,7 +29,6 @@ namespace BLL.SEP
             Usuario userdb8 = new Usuario();
             List<SpecialObject> lstAlumnos = new List<SpecialObject>();
 
-            alumno.UsuarioId = 1;
             alumno.Usuario = new Usuario
             {
 
@@ -50,22 +49,22 @@ namespace BLL.SEP
                 }
             };
 
-            alumno.AlumnoOfertaEducativaId = 1;
+            alumno.AlumnoOfertaEducativaId = 2;
             alumno.AlumnoOfertaEducativa = new AlumnoOfertaEducativa
             {
                 InstitucionId = "0",
-                OfertaEducativaId = 1,
+                OfertaEducativaId = 2,
                 FechaTermino = new DateTime(2018, 8, 30),
                 FechaInicio = new DateTime(2015, 8, 30),
-                RVOE = "20130249",
+                RVOE = "20130248",
                 OfertaEducativa = new OfertaEducativa
                 {
-                    DescripcionSEP = "LICENCIATURA EN PEDAGOGÍA",
+                    DescripcionSEP = "ESPECIALIDAD EN EDUCACIÓN",
                     InstitucionOfertaEducativa = new List<InstitucionOfertaEducativa>
                     {
                         new InstitucionOfertaEducativa
                         {
-                            ClaveOfertaEducativa="245301",
+                            ClaveOfertaEducativa="241711",
                             CampusId=1,
                             Campus= new Campus
                             {
@@ -212,10 +211,36 @@ namespace BLL.SEP
                             }
                         }
                     }
+                },
+                new UsuarioResponsable
+                {
+                    UsuarioId=2,
+                    Usuario= new Usuario
+                    {
+                        Nombre="ALEJANDRA SANDRA",
+                        Paterno="CRUZ",
+                        Materno="FLORES",
+                        UsuarioId=2,
+                        UsuarioDetalle= new UsuarioDetalle
+                        {
+                            CURP="GUNB530725HDFLMN02",
+                            PassSat="brd53858753",
+                            TituloCorto="LIC.",
+                        },
+                        Cargo= new List<Cargo> {
+                            new Cargo{
+                                CargoId=5,
+                                Descripcion="RESPONSABLE DE EXPEDICIÓN"
+                            }
+                        }
+                    }
                 }
             };
 
-            userdb = alumno.UsuarioResponsable.First().Usuario;
+            
+            alumno.UsuarioId = 2;
+            //userdb = alumno.UsuarioResponsable.First().Usuario;
+            userdb = alumno.UsuarioResponsable.Last().Usuario;            
 
             lstAlumnos.Add(new SpecialObject
             {
@@ -1315,14 +1340,16 @@ namespace BLL.SEP
             {
                 new ResultSEP
                 {
-                    NumeroLote= "41144",
+                    //NumeroLote= "41144",
+                    NumeroLote="43415",
                     Mensaje= "",
-                    Folios=new List<string> {"1A201102001C1.xml" },
+                    //Folios=new List<string> {"1A201102001C1.xml" },
+                    Folios= new List<string>{ "1A201102001C2.xml" },
                     Alumnos =new List<AlumnoSEP> {
                         new AlumnoSEP{
                             AlumnoId= "201102001" ,
                             AlumnoTituloId=1,
-                            OfertaEducativaId=1
+                            OfertaEducativaId=2 //1
                     }
                 }
                 },
